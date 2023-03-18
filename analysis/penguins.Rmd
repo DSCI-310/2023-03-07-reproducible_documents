@@ -2,7 +2,11 @@
 title: "Penguin Analysis"
 author: "Daniel Chen"
 date: "`r Sys.Date()`"
-output: bookdown::html_document2
+output: 
+  bookdown::html_document2:
+    default
+  bookdown::pdf_document2:
+    toc : true
 bibliography: citations.bib
 ---
 
@@ -15,11 +19,10 @@ knitr::opts_chunk$set(echo = FALSE)
 This is the pengins dataset, but here's a citation for the UCI heart disease @bashir2014ensemble.
 
 ```{r}
-library(palmerpenguins)
 library(knitr)
 library(here)
-
-print(getwd())
+library(palmerpenguins)
+# print(getwd())
 
 source(here("R/predict.R"))
 
@@ -33,10 +36,7 @@ library(tidyverse)
 # Methods
 
 ```{r, message=FALSE, warning=FALSE, fig.alt="This is for a screen reader and this is a figure of the bill_length_mm on the x axis, and the fillter_lenth_mm on the y, colore by species of penguins", fig.cap="Pengins by fiipper length vs bill length."}
-ggplot(penguins, aes(x = bill_length_mm,
-                     y = flipper_length_mm,
-                     color = species)) +
-  geom_point()
+knitr::include_graphics(here::here("output/penguins_plain.png"))
 ```
 
 
